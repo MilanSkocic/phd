@@ -1,0 +1,139 @@
+\documentclass[12pt,a4paper,twoside,openright]{book}
+% the book class has some advantages over the report class
+% it defines three styles: frontmatter, mainmatter and backmatter
+% the default styles are very convenient
+% Load packages
+\input{./src/settings/packages}
+
+% INPG TITLE PAGE
+\usepackage[a4paper]{./src/meta-donnees}
+
+% PDF properties displayed as metadata
+\hypersetup{
+    bookmarks=true, 		% show bookmarks bar?
+    unicode=true,  		% non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,      % page fit to window when opened
+    pdftitle={Etude (photo)-électrochimique en réacteur simulé du phénomène de shadow corrosion des alliages de zirconium},    % title
+    pdfauthor={M. Skocic},     % author
+    pdfsubject={PhD},   % subject of the document
+    pdfnewwindow=true,      % links in new window
+    pdfkeywords={Shadow Corrosion, PEC, Electrochimie, In-Situ}, % list of keywords
+    colorlinks=False,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+%Work around for biblatex-ieee
+%Proper capital protection in title
+%\DeclareFieldFormat{titlecase}{\MakeCapital{#1}}
+\DeclareFieldFormat{sentencecase}{\MakeSentenceCase{#1}}
+
+\captionsetup[table]{name=\textsc{Tableau}}
+% Avoid dash for same author in 2 consecutive citations (IEEE style)
+\renewbibmacro*{bbx:savehash}{}
+\usepackage{setspace}
+\pdfminorversion=7
+%\pdfobjcompresslevel=0
+%\usepackage[a-1b]{pdfx}
+
+%\setlength{\parindent}{0cm}
+
+%--------------------------------------------------------
+%				DOCUMENT
+%--------------------------------------------------------
+%\includeonly{./mainmatter/chapter_1/chapter_1}
+\begin{document}
+
+% french for the whole document
+% english is activated at the end for the summary in english
+%\selectlanguage{french}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% FRONT MATTER %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Front matter starts here
+	\frontmatter
+	\pagestyle{plain} %avoid headers from fancyhdr package
+	
+	% Title page -INPG template
+	\input{./src/frontmatter/template_Couv_Com_Univ-Grenoble-Alpes.tex}
+	
+	% Acknowledgment
+	\input{./src/frontmatter/acknowledgement.tex}
+	
+	%allows to add mini TOC for each chapter
+	\dominitoc 
+	
+	%TOC + LOF + LOT
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	% Nomenclature	
+	\input{./src/frontmatter/acronyms.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% MAIN MATTER %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%  Avoid headers and footers when an empty page is added just before a new chapter. 
+	\makeatletter
+	\def\cleardoublepage{\clearpage\if@twoside
+	\ifodd\c@page
+	\else\hbox{}\thispagestyle{empty}\newpage
+	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+	\makeatother
+	
+	% The main matter starts here
+	\mainmatter
+    \raggedbottom
+    \setlength{\parskip}{0.15cm}
+    \onehalfspacing
+	\pagestyle{plain}
+	%Chapters
+	\input{./src/mainmatter/introduction/introduction}
+
+	\pagestyle{fancy}
+	
+    \input{./src/mainmatter/chapter_1/chapter_1}
+	
+	\input{./src/mainmatter/chapter_2/chapter_2}
+	
+	\input{./src/mainmatter/chapter_3/chapter_3}
+	
+	\input{./src/mainmatter/chapter_4/chapter_4}
+
+	\pagestyle{plain}
+
+	\input{./src/mainmatter/conclusions/conclusions}
+	
+	
+	%Appendixes
+	%\appendix
+	
+	%\input{./mainmatter/appendix_1/appendix_1}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% BACKMATTER %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\pagestyle{empty}
+%bibliography is not in the backmatter
+%each chapter has its own reference section
+%\printbibheading[heading=bibintoc]
+%\printbibliography[heading=subbibintoc, title=Chapitre 1, section=1]
+%\printindex
+% Abstract goes at the end in order to match the Grenoble Univ. template
+% page style is empty because the last page containing the summary is printed on hardcover
+%\clearpage
+\thispagestyle{empty}
+\singlespacing
+\cleardoublepage
+\input{./src/backmatter/abstract.tex}
+
+\end{document}

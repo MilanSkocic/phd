@@ -1,0 +1,56 @@
+% la ligne ci-dessous est à insérer obligatoirement dans le préambule du document avant \begin{document}
+
+%\usepackage[a4paper]{meta-donnees}
+
+
+% les lignes en bas sont à insérer obligatoirement après \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%             Commandes Meta-données               %%
+%%   à renseigner par les auteurs pour générer      %%
+%%     la couverture modèle Univ. Grenoble          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Fichier encodé au format ISO-8859-16        %%
+
+%\Sethpageshift{???mm}   %%optionnel : à décommenter si besoin pour ajout d'espace afin de center la couvérture horizontalement (valeur par défaut est -5.5mm)
+%\Setvpageshift{???mm}   %%optionnel : à décommenter si besoin pour ajout d'espace afin de center la couvérture verticalement (valeur par défaut est -15.5mm)
+
+
+%\Universite{}    %%optionnel : à décommenter et à renseigenr si vous voulez changer le non d'université
+%\Grade{}         %%optionnel : à décommenter et à renseigenr si vous voulez changer le grade
+\Specialite{Matériaux, Mécanique, Génie Civil, Electrochimie}
+\Arrete{7 Août 2006}
+\Auteur{Milan Skocic}
+\Directeur{Jean-Pierre Petit}
+\CoDirecteur{Yves Wouters}    %%optionnel : à décommenter et à renseigenr si présence d'un Co-directeur de thèse
+\Laboratoire{Laboratoire SIMaP}
+\EcoleDoctorale{l'Ecole Doctorale I-MEP2}         
+\Titre{Etude (photo)-électrochimique en réacteur simulé du phénomène de shadow corrosion des alliages de zirconium}
+%\Soustitre{}      %%optionnel : à décommenter et à renseigenr si présence d'un sous-titre de thèse
+\Depot{27 mai 2016}       
+
+
+% Commande pour création de nouvelles catégories dans le jury:
+
+%\UGTNewJuryCategory{...NomDeLaCategorie...}{...Definition...}
+
+% Exemple \UGTNewJuryCategory{UGTFamille}{Membre de la famille} que nous ajoutons dans la commande \Jury ci-dessous sous la forme \UGTFamille{Jean Rousseau}{(...titre_et_affiliation...s'il_y_en_a...)}
+
+
+\Jury{
+\UGTPresident{M., Marian CHATENET, }{Professeur, Université Grenoble Alpes}
+%\UGTPresidente{Civilité, Prénom-et-Nom}{titre-et-affiliation}
+
+\UGTRapporteur{M., Sébastien CHEVALIER}{Professeur, Université de Bourgogne}      %% 1er rapporteur
+ 
+\UGTRapporteur{M., Marc TUPIN}{Ingénieur chercheur, CEA Saclay}     %% 1er examinateur
+\UGTExaminateur{M., Damien KACZOROWSKI}{Ingénieur expert corrosion, Areva}     %% second examinateur
+
+% Directeur de thèse
+\UGTCoDirecteur{M., Yves WOUTERS}{Professeur, Université Grenoble Alpes}     
+
+\UGTDirecteur{M., Jean-Pierre PETIT}{Professeur, Université Grenoble Alpes}{, Invité}
+}
+
+\MakeUGthesePDG    
+

@@ -1,0 +1,254 @@
+% !TeX root=../main_file.tex
+% !TeX TS-program = pdflatex
+% !TeX checkspelling = fr-toutesvariantes
+
+
+%--------------------------------------------------------
+%				LANGUAGE SETTINGS
+%--------------------------------------------------------
+\usepackage[french]{babel}
+
+
+%--------------------------------------------------------
+%				PAGE DIMENSIONS
+%--------------------------------------------------------
+\usepackage[left=2.5cm, right=2.5cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{changepage}
+
+%--------------------------------------------------------
+%					GRAPHICS
+%--------------------------------------------------------
+% Packages for pictures adding
+\usepackage{float}
+\usepackage{graphicx} %insert images
+\usepackage{caption}
+\usepackage{subcaption}
+
+\graphicspath{{../../../../1-Bibliography/Pictures/}%
+				{./src/mainmatter/chapter_1/figures/}
+				{./src/mainmatter/chapter_2/figures/}
+				{./src/mainmatter/chapter_3/figures/}
+				{./src/mainmatter/chapter_4/figures/}
+				{./src/mainmatter/chapter_5/figures/}
+}
+
+
+%--------------------------------------------------------
+%					REFERENCES 
+%--------------------------------------------------------
+%\usepackage[sectionbib]{chapterbib} % add references, sectionbib option adds the references in each chapter
+%\usepackage[numbers,square]{natbib}
+\usepackage[backend=biber,
+bibstyle=ieee, 
+citestyle=numeric-comp,
+natbib=true,
+doi=false, 
+url=false,
+isbn=false,
+mincitenames=1,
+maxcitenames=1,
+minbibnames=1,
+maxbibnames=99,
+backref=false,]
+{biblatex}
+\addbibresource[label=main_bib]{./src/backmatter/PhD.bib}
+
+
+%--------------------------------------------------------
+%				FONT SETTINGS
+%--------------------------------------------------------
+\usepackage{ifxetex}
+% XELATEX SPECIFICATIONS
+\ifxetex
+	\usepackage{unicode-math}
+	\usepackage{fontspec} % Font selection for XeLaTeX; see fontspec.pdf for documentation
+	\defaultfontfeatures{Mapping=tex-text} % to support TeX conventions like ``---''
+	\usepackage{xunicode} % Unicode support for LaTeX character names 
+	\usepackage{unicode-math}
+	\usepackage{xltxtra} % Extra customizations for XeLaTeX
+	\setmainfont{CMU Concrete} %if the font is installed on the system
+	\setmathfont{CMU Concrete}
+	\setsansfont{CMU Sans Serif}
+	\setmonofont{CMU Typewriter Text}
+\else
+% PDFLATEX SPECIFICATIONS
+	\usepackage{microtype}% better space management
+	\usepackage[utf8]{inputenc}%utf encoding
+	\usepackage[T1]{fontenc}
+	%\usepackage{default} %load the default police pack
+	%\usepackage[amsfonts,amssymb,exscale]{concmath}
+	\usepackage{mathastext}
+	%\renewcommand*\familydefault{\ttdefault}
+	%available packs: default, bookman, charter, newcent, lmodern, mathpazo, mathptmx
+	
+\fi
+
+%--------------------------------------------------------
+%		HEADERS AND FOOTERS 
+%--------------------------------------------------------
+
+%Custom headers and footers
+\usepackage{fancyhdr} %custom headers and footers layout
+\usepackage{lastpage} %package to print the last page
+\pagestyle{fancy} %fancy page style
+\fancyhf{}
+\fancyhead[LE, LO]{\leftmark}
+\fancyfoot[CO,CE]{\thepage}
+%redefine headers for 
+%No capitalization
+\renewcommand{\sectionmark}[1]{%
+\markright{
+\ \thesection.\ #1}{}}
+
+\renewcommand{\chaptermark}[1]{%
+\markboth{\chaptername
+\ \thechapter.\ #1}{}}
+
+
+%--------------------------------------------------------
+%				MATHS TOOLS
+%--------------------------------------------------------
+% amsmath and amsfont have to be loaded before the xunicode package when XeTeX is used. 
+% The experimental package unicode-math will subsitute those packages when XeTeX is used. 
+% It is available in TeX Live 2012.
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+% The amsthm package provides an enhanced version of LATEX's \newtheorem commandfor defining theorem-like environments.
+\usepackage{mathtools} 
+% The mathtools package fixes some amsmath quirks and adds some useful settings, symbols, and environments to amsmath. The mathtools package loads the amsmath package and hence there is no need to 
+
+%--------------------------------------------------------
+%			ADDITIONAL PACKAGES 
+%--------------------------------------------------------
+% diverse package
+\usepackage{textcomp} %use specific symbols for text (example "°")
+\usepackage{multicol} %create multi column environment
+
+% use colors
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+
+\usepackage{booktabs}% add top, middle, bottom rule for professional tables
+
+\usepackage{siunitx} %Use SI units
+%\usepackage[Lenny]{fncychap}% change the chapter aspect
+% Lenny, Sonny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+%\ChTitleVar{\mdseries \sc}
+
+
+\usepackage{varioref}% change the reference style of the floats
+\usepackage{setspace}% interspacing management
+
+%\usepackage{sectsty}
+%\allsectionsfont{\mdseries \sc}
+\usepackage{minitoc}% add TOC in each chapter
+\mtcselectlanguage{french} % change language in minitoc package
+\mtcsetdepth{minitoc}{1}
+% \usepackage{listings} %add programmation code p.199 in latex tutorial
+
+% ToC (table of contents) APPEARANCE
+%\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+%\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+%\renewcommand{\cftchapfont}{\mdseries \sc}
+%\renewcommand{\cftchappagefont}{\mdseries} % No bold!
+%\renewcommand{\cftsecfont}{\mdseries \sc}
+%\renewcommand{\cftsecpagefont}{\mdseries} % No bold!
+\usepackage{lipsum}
+%--------------------------------------------------------
+%			INDEX AND NOMENCLATURE 
+%--------------------------------------------------------
+\usepackage[french]{nomencl}
+\renewcommand{\nomgroup}[1]{%
+\ifthenelse{\equal{#1}{A}}{\item[\textbf{Sigles}]}{%
+\ifthenelse{\equal{#1}{I}}{\item[\textbf{Indices}]}{%
+\ifthenelse{\equal{#1}{C}}{\item[\textbf{Constantes Physiques}]}{%
+\ifthenelse{\equal{#1}{E}}{\item[\textbf{Electrochimie}]}{%
+\ifthenelse{\equal{#1}{P}}{\item[\textbf{Photoélectrochimie}]}%
+{}
+}% matches Subscripts
+}% matches Abbreviations
+}
+}
+}
+
+\makenomenclature
+\usepackage{makeidx}
+\makeindex
+
+
+%--------------------------------------------------------
+%			PDF PROPERTIES AND HYPERLINKS 
+%--------------------------------------------------------
+
+% url links in document
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+
+
+
+%--------------------------------------------------------
+%			CUSTOM ENVIRONMENTS 
+%--------------------------------------------------------
+\newenvironment{abstract}%
+{\null \vspace{\stretch{1}}\begin{center}%
+\bfseries \large \abstractname \end{center}}%
+{\vspace{\stretch{4}}\null}
+
+\makeatletter
+\newenvironment{chapintroduction}{%
+    \vspace{1cm} \begin{adjustwidth}{0.5cm}{0.5cm}\it }%
+   {\end{adjustwidth}\par}
+\makeatother
+
+\newenvironment{acknowledgement}%
+{\cleardoublepage\null \vspace{\stretch{1}}\begin{center}%
+\bfseries Remerciements \end{center}}%
+{\vspace{\stretch{2}}\null}
+
+\newenvironment{dedication}%
+{\clearpage\begin{flushright} \null\vspace{\stretch{1}}}%
+{\vspace{\stretch{2}}\null \end{flushright}}
+
+
+%--------------------------------------------------------
+%	CUSTOM COLORS
+%--------------------------------------------------------
+\definecolor{lightgray}{gray}{0.9}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
+
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\ppb{ppb}
+\DeclareSIUnit\dec{dec}
+\newcommand{\Hyd}{$\rm H_2$}
+\newcommand{\Oxy}{$\rm O_2$}
+\newcommand{\Tkim}{\SI{300}{\degreeCelsius}}
+\newcommand{\E}{E}
+\newcommand{\SC}{sc}
+\newcommand{\cc}{cc}
+\newcommand{\iph}{I_{ph}}
+\newcommand{\ipht}{I_{ph}^{\ast}}
+\newcommand{\phase}{\theta}
+\newcommand{\Hm}{H}
+\newcommand{\el}{el}
+\newcommand{\DRe}{D^2_{Re}}
+\newcommand{\DIm}{D^2_{Im}}
+\newcommand{\ReIphtExp}{Re \, I_{ph,exp}^{\ast}}
+\newcommand{\ReIphtCalc}{Re \, I_{ph,calc}^{\ast}}
+\newcommand{\ImIphtExp}{Im \, I_{ph,exp}^{\ast}}
+\newcommand{\ImIphtCalc}{Im \, I_{ph,calc}^{\ast}}
+\newcommand{\ReIphExp}{Re \, I_{ph,exp}}
+\newcommand{\ReIphCalc}{Re \, I_{ph,calc}}
+\newcommand{\ImIphExp}{Im \, I_{ph,exp}}
+\newcommand{\ImIphCalc}{Im \, I_{ph,calc}}
+
+\newcommand{\hv}{h\nu}
+
+\renewcommand{\theparagraph}{\alph{paragraph})}
